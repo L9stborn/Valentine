@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #fde2e4, #fadadd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+/* ROSE PETALS */
+.petal {
+  position: fixed;
+  top: -50px;
+  font-size: 24px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+.container {
+  background: #fff;
+  padding: 50px 40px;
+  border-radius: 25px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  z-index: 10;
+  animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: #c9184a;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 35px;
+}
+
+.buttons {
+  position: relative;
+  height: 120px;
+}
+
+button {
+  padding: 14px 32px;
+  font-size: 16px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+}
+
+#yes {
+  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 10px 20px rgba(201,24,74,0.4);
+}
+
+#yes:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+#no {
+  background: #f1f1f1;
+  color: #444;
+  left: 10%;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.footer {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #aaa;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3cbecc1d6a.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <h1>Will you be my Valentine,<br>Mon Cœur? ❤️</h1>
+  <p class="subtitle">I planned something special just for you…</p>
+
+  <div class="buttons">
+    <button id="yes" onclick="yesClicked()">Yes, I will 💖</button>
+    <button id="no" onmouseover="runAway()">No 🙄</button>
+  </div>
+
+  <div class="footer">Made with love 💌</div>
+</div>
+
+<script>
+// ROSE PETALS GENERATOR
+for (let i = 0; i < 20; i++) {
+  const petal = document.createElement("div");
+  petal.className = "petal";
+  petal.innerHTML = "🌹";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.animationDuration = 5 + Math.random() * 5 + "s";
+  petal.style.fontSize = 18 + Math.random() * 12 + "px";
+  document.body.appendChild(petal);
+}
+
+// NO BUTTON RUN + SHAKE + TEASE
+function runAway() {
+  const noBtn = document.getElementById("no");
+  const x = Math.random() * 260;
+  const y = Math.random() * 80;
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+  noBtn.style.animation = "shake 0.4s";
+
+  const teases = [
+    "Hey 😏 try again",
+    "Not allowed 😌",
+    "Nice try 😂",
+    "You know you want yes ❤️",
+    "Stop playing 😄"
+  ];
+
+  noBtn.innerText = teases[Math.floor(Math.random() * teases.length)];
+}
+
+// YES CLICK
+function yesClicked() {
+  document.body.innerHTML = `
+    <div style="
+      height:100vh;
+      background: linear-gradient(135deg, #fde2e4, #fadadd);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-family:'Poppins', sans-serif;
+      text-align:center;
+      padding:20px;">
+      
+      <div style="
+        background:#fff;
+        padding:50px;
+        border-radius:25px;
+        box-shadow:0 30px 60px rgba(0,0,0,0.15);
+        animation: fadeIn 1s;">
+        
+        <h1 style="
+          font-family:'Playfair Display', serif;
+          color:#c9184a;
+          font-size:32px;">
+          She said YES 💕
+        </h1>
+        
+        <p style="font-size:18px; margin-top:15px;">
+          Valentine secured 🌹<br>
+          I can’t wait to spoil you, Mon Cœur 💖
+        </p>
+      </div>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
